@@ -10,10 +10,10 @@
 
 其中Crazyflie组包括：
 
--   Crazyflie 2.1 无人机：无人机实验本体
--   CrazyRadio PA：与无人机连接并通讯
--   地面站电脑：作为地面站用来控制无人机
--   电池充电器配 7块 电池：对多个电池进行充电，保证无人机实验的循环进行
+-   Crazyflie 2.1 无人机：无人机实验本体，以下简写为Crazyflie
+-   CrazyRadio PA：与Crazyflie连接并通讯
+-   地面站电脑：作为地面站用来控制Crazyflie
+-   电池充电器配 7块 电池：对多个电池进行充电，保证Crazyflie实验的循环进行
 
 其中动捕组包括：
 
@@ -22,17 +22,17 @@
 
 其中配件组包括：
 
--   电子秤：对不同电池与无人机的组合进行质量测量
+-   电子秤：对不同电池与Crazyflie的组合进行质量测量
 
 ## 1.2 硬件连接
 
-&emsp;&emsp;动捕数据通过网线与地面站电脑连接，通过设置IP地址实现数据传输。之后地面站电脑通过CrazyRadio PA与无人机连接，将动捕数据以及轨迹位置信息发送给无人机，无人机根据数据进行控制。
+&emsp;&emsp;动捕数据通过网线与地面站电脑连接，通过设置IP地址实现数据传输。之后地面站电脑通过CrazyRadio PA与Crazyflie连接，将动捕数据以及轨迹位置信息发送给Crazyflie，Crazyflie根据数据进行控制。
 
 <div align=center>
     <img src="./Assets/Crazyflie硬件连接.png" width=80% style="margin-top: 20px; margin-bottom: 30px;">
 </div>
 
-&emsp;&emsp;在设置中找到以太网并设置“编辑IP分配”为手动，将“IP地址”设置为10.1.1.198，”子网掩码“设置为255.255.255.0，即可与动捕系统进行通讯。（注：该设置在后续有线网络连接时会连接不上，只需将“编辑IP分配”设置为自动即可。）
+&emsp;&emsp;在设置中找到以太网并设置“编辑IP分配”为手动，将“IP地址”设置为10.1.1.198，”子网掩码“设置为255.255.255.0，即可与动捕系统进行通讯，并关闭防火墙和网络拦截软件。（注：该设置在后续外部网络使用时会连接错误，只需将“编辑IP分配”设置为自动即可。）
 
 # 2. 程序讲解
 
@@ -40,15 +40,60 @@
 
 <div align=center>
 
-| 程序名称 | 程序位置 | 控制器 | 程序用途 |
-| :------ | :------ | :----: | :------ |
-|  01_base_Crazyflie(WX-PID_Nokov_Hover).py  | 主目录 | PID控制程序 | 用于控制Crazyflie的悬停运动 |
-|  01_base_Crazyflie(WX-PID_Nokov_SameVDifferentz).py | 主目录 | PID控制程序 | 用于控制Crazyflie的相同速度不同高度运动 |
-|  01_base_Crazyflie(WX-PID_Nokov_Archimedes).py  | 主目录 | PID控制程序 | 用于控制Crazyflie的阿基米德螺旋线运动 |
-|  01_base_Crazyflie(WX-PID_Nokov_Figure8).py  | 主目录 | PID控制程序 | 用于控制Crazyflie的8字飞行运动 |
-|  WX_PID_Controller.py | 主目录/Controller | 无 | 为王旭师兄撰写的PID控制器函数 |
-|  utils_data.py | 主目录/Utilities | 无 | 用于数据记录的工具函数 |
-|  utils_plot.py | 主目录/Utilities | 无 | 用于数据可视化的工具函数 |
+<table>
+  <thead>
+    <tr>
+      <th align="center">程序名称</th>
+      <th align="center">程序位置</th>
+      <th align="center">控制器</th>
+      <th align="center">程序用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">01_base_Crazyflie(WX-PID_Nokov_Hover).py</td>
+      <td align="left">主目录</td>
+      <td align="center">PID控制程序</td>
+      <td align="left">用于控制Crazyflie的悬停运动</td>
+    </tr>
+    <tr>
+      <td align="left">01_base_Crazyflie(WX-PID_Nokov_SameVDifferentz).py</td>
+      <td align="left">主目录</td>
+      <td align="center">PID控制程序</td>
+      <td align="left">用于控制Crazyflie的相同速度不同高度运动</td>
+    </tr>
+    <tr>
+      <td align="left">01_base_Crazyflie(WX-PID_Nokov_Archimedes).py</td>
+      <td align="left">主目录</td>
+      <td align="center">PID控制程序</td>
+      <td align="left">用于控制Crazyflie的阿基米德螺旋线运动</td>
+    </tr>
+    <tr>
+      <td align="left">01_base_Crazyflie(WX-PID_Nokov_Figure8).py</td>
+      <td align="left">主目录</td>
+      <td align="center">PID控制程序</td>
+      <td align="left">用于控制Crazyflie的8字飞行运动</td>
+    </tr>
+    <tr>
+      <td align="left">WX_PID_Controller.py</td>
+      <td align="left">主目录/Controller</td>
+      <td align="center">/</td>
+      <td align="left">为王旭师兄撰写的PID控制器函数</td>
+    </tr>
+    <tr>
+      <td align="left">utils_data.py</td>
+      <td align="left">主目录/Utilities</td>
+      <td align="center">/</td>
+      <td align="left">用于数据记录的工具函数</td>
+    </tr>
+    <tr>
+      <td align="left">utils_plot.py</td>
+      <td align="left">主目录/Utilities</td>
+      <td align="center">/</td>
+      <td align="left">用于数据可视化的工具函数</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -68,6 +113,8 @@ ret = nokov_client.Initialize(bytes(nokovIp, encoding="utf8"))
 
 ### 2.2.2 动捕函数设置
 
+&emsp;&emsp;以下代码旨在对动捕数据进行处理，将其转换为Crazyflie可识别的位置信息。具体来说，该函数会从动捕数据中提取出刚体的位置信息，并将其转换为米为单位的位置信息，同时进行坐标系映射。然后，将该位置信息发送给Crazyflie，Crazyflie 飞控内部会对接收到的外部位置信息进行多传感器融合滤波（如 EKF），以输出更平滑的估计值。其中通过时间戳节流将发送频率限制在约 50Hz，目的是避免因数据发送过快导致无线电链路拥塞或缓冲区溢出。
+
 ```python
 def nokov_to_cf_callback(pFrameOfMocapData, pUserData):
 # 动捕数据接收回调：只注入位置(X, Y, Z)
@@ -75,7 +122,7 @@ def nokov_to_cf_callback(pFrameOfMocapData, pUserData):
     if pFrameOfMocapData is None or global_cf is None:
         return
 
-    # 频率节流 (限制在约 50Hz，防止无线电缓冲区溢出)
+    # 频率节流 (限制在约50Hz，防止无线电缓冲区溢出)
     current_time = time.time()
     if current_time - last_extpos_time < 0.02:
         return
@@ -110,14 +157,18 @@ def nokov_to_cf_callback(pFrameOfMocapData, pUserData):
 
 ### 2.2.3 动捕函数使用
 
+&emsp;&emsp;以下代码旨在对运行上述动捕函数。但是在外部进行了状态判断，若初始化失败，则退出程序。若初始化成功，则开启实时位置注入。
+
 ```python
 if ret == 0:
-        print("动捕系统连接成功，已开启实时位置注入...")
-        nokov_client.PySetDataCallback(nokov_to_cf_callback, None)
-    else:
-        print(f"动捕系统连接失败 (错误码:{ret})，请检查网络或软件设置！")
-        exit(0)
+    print("动捕系统连接成功，已开启实时位置注入...")
+    nokov_client.PySetDataCallback(nokov_to_cf_callback, None)
+else:
+    print(f"动捕系统连接失败 (错误码:{ret})，请检查网络或软件设置！")
+    exit(0)
 ```
+
+## 2.3 控制涉及代码解析
 
 # 附A：动捕库安装教程
 &emsp;&emsp;将“nokovpy-3.0.1-py3-none-any.whl”文件放置于主目录下，并在终端执行以下命令进行动捕库的安装：
