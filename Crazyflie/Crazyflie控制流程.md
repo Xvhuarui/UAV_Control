@@ -51,43 +51,43 @@
   </thead>
   <tbody>
     <tr>
-      <td align="left">01_base_Crazyflie(WX-PID_Nokov_Hover).py</td>
+      <td align="left"><a href="./Crazyflie_Control/01_base_Crazyflie(WX-PID_Nokov_Hover).py">01_base_Crazyflie(WX-PID_Nokov_Hover).py</a></td>
       <td align="left">主目录</td>
       <td align="center">PID控制程序</td>
       <td align="left">用于控制Crazyflie的悬停运动</td>
     </tr>
     <tr>
-      <td align="left">01_base_Crazyflie(WX-PID_Nokov_SameVDifferentz).py</td>
+      <td align="left"><a href="./Crazyflie_Control/01_base_Crazyflie(WX-PID_Nokov_SameVDifferentz).py">01_base_Crazyflie(WX-PID_Nokov_SameVDifferentz).py</a></td>
       <td align="left">主目录</td>
       <td align="center">PID控制程序</td>
       <td align="left">用于控制Crazyflie的相同速度不同高度运动</td>
     </tr>
     <tr>
-      <td align="left">01_base_Crazyflie(WX-PID_Nokov_Archimedes).py</td>
+      <td align="left"><a href="./Crazyflie_Control/01_base_Crazyflie(WX-PID_Nokov_Archimedes).py">01_base_Crazyflie(WX-PID_Nokov_Archimedes).py</a></td>
       <td align="left">主目录</td>
       <td align="center">PID控制程序</td>
       <td align="left">用于控制Crazyflie的阿基米德螺旋线运动</td>
     </tr>
     <tr>
-      <td align="left">01_base_Crazyflie(WX-PID_Nokov_Figure8).py</td>
+      <td align="left"><a href="./Crazyflie_Control/01_base_Crazyflie(WX-PID_Nokov_Figure8).py">01_base_Crazyflie(WX-PID_Nokov_Figure8).py</a></td>
       <td align="left">主目录</td>
       <td align="center">PID控制程序</td>
       <td align="left">用于控制Crazyflie的8字飞行运动</td>
     </tr>
     <tr>
-      <td align="left">WX_PID_Controller.py</td>
+      <td align="left"><a href="./Crazyflie_Control/Controller/WX_PID_Controller.py">WX_PID_Controller.py</a></td>
       <td align="left">主目录/Controller</td>
       <td align="center">/</td>
       <td align="left">为王旭师兄撰写的PID控制器函数</td>
     </tr>
     <tr>
-      <td align="left">utils_data.py</td>
+      <td align="left"><a href="./Crazyflie_Control/Utilities/utils_data.py">utils_data.py</a></td>
       <td align="left">主目录/Utilities</td>
       <td align="center">/</td>
       <td align="left">用于数据记录的工具函数</td>
     </tr>
     <tr>
-      <td align="left">utils_plot.py</td>
+      <td align="left"><a href="./Crazyflie_Control/Utilities/utils_plot.py">utils_plot.py</a></td>
       <td align="left">主目录/Utilities</td>
       <td align="center">/</td>
       <td align="left">用于数据可视化的工具函数</td>
@@ -317,13 +317,10 @@ elif self.i < hover_step_len + archimedes_step_len + return_step_len:
     theta_end = omega * t_end
 
     # 回旋阶段时间
-    t_return = (
-        self.i - hover_step_len - archimedes_step_len
-    ) / Control_freq
+    t_return = (self.i - hover_step_len - archimedes_step_len) / Control_freq
 
     return_progress = (
-        self.i - hover_step_len - archimedes_step_len
-    ) / max(return_step_len - 1, 1)
+        self.i - hover_step_len - archimedes_step_len) / max(return_step_len - 1, 1)
     return_progress = np.clip(return_progress, 0.0, 1.0)
 
     # 半径从 r_end 线性减小到 0
@@ -407,6 +404,10 @@ else:
     z = stable_z
     mode = 'stable'
 ```
+
+# 3. 光流控制
+
+
 
 # 附A：动捕库安装教程
 &emsp;&emsp;将“nokovpy-3.0.1-py3-none-any.whl”文件放置于主目录下，并在终端执行以下命令进行动捕库的安装：
