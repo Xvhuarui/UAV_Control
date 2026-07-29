@@ -12,12 +12,24 @@
 
 -   Crazyflie 2.1 无人机：无人机实验本体，以下简写为Crazyflie
 -   CrazyRadio PA：与Crazyflie连接并通讯
+
+<div align=center>
+    <img src="./Assets/Crazyflie无人机.png" width=41%>
+    <img src="./Assets/CrazyRadio.png" width=30%>
+</div>
+
 -   地面站电脑：作为地面站用来控制Crazyflie
 -   电池充电器配 7块 电池：对多个电池进行充电，保证Crazyflie实验的循环进行
 
 其中动捕组包括：
 
--   Crazyflie Mark Deck 配 4个 动捕球：用于动捕系统进行位置捕捉 
+-   Crazyflie Mark Deck 配 4个 动捕球：用于动捕系统进行位置捕捉
+
+<div align=center>
+    <img src="./Assets/Marker.png" width=30%>
+    <img src="./Assets/动捕球.png" width=30%>
+</div>
+
 -   动捕加密狗：用于动捕软件的使用
 
 其中配件组包括：
