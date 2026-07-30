@@ -41,7 +41,7 @@
 &emsp;&emsp;动捕数据通过网线与地面站电脑连接，通过设置IP地址实现数据传输。之后地面站电脑通过CrazyRadio PA与Crazyflie连接，将动捕数据以及轨迹位置信息发送给Crazyflie，Crazyflie根据数据进行控制。
 
 <div align=center>
-    <img src="./Assets/Crazyflie硬件连接.png" width=80% style="margin-top: 20px; margin-bottom: 30px;">
+    <img src="./Assets/Crazyflie硬件连接.png" width=90%>
 </div>
 
 &emsp;&emsp;在设置中找到以太网并设置“编辑IP分配”为手动，将“IP地址”设置为10.1.1.198，”子网掩码“设置为255.255.255.0，即可与动捕系统进行通讯，并关闭防火墙和网络拦截软件。（注：该设置在后续外部网络使用时会连接错误，只需将“编辑IP分配”设置为自动即可。）
@@ -113,7 +113,7 @@
 
 ### 2.2.1 动捕库导入并初始化
 
-&emsp;&emsp;以下代码旨在初始化动捕系统的通信客户端。首先导入 ```nokov.nokovsdk``` 模块，创建 ```PySDKClient``` 实例并赋值给变量 ```nokov_client```；然后调用其 ```Initialize()``` 方法，传入动捕服务器 IP 地址（转换为字节串），该方法返回一个表示初始化结果的状态码（或布尔值），赋值给 ```ret``` 变量，以便后续判断连接是否成功。
+&emsp;&emsp;以下代码旨在初始化动捕系统的通信客户端。首先导入 ```nokov.nokovsdk``` 模块，创建 ```PySDKClient``` 实例并赋值给变量 ```nokov_client```；然后调用其 ```Initialize()``` 方法，传入动捕服务器 IP 地址（转换为字节串），该方法返回一个表示初始化结果的状态码赋值给 ```ret``` 变量，以便后续判断连接是否成功。
 
 ```python
 from nokov.nokovsdk import *
@@ -125,7 +125,7 @@ ret = nokov_client.Initialize(bytes(nokovIp, encoding="utf8"))
 
 ### 2.2.2 动捕函数设置
 
-&emsp;&emsp;以下代码旨在对动捕数据进行处理，将其转换为Crazyflie可识别的位置信息。具体来说，该函数会从动捕数据中提取出刚体的位置信息，并将其转换为米为单位的位置信息，同时进行坐标系映射。然后，将该位置信息发送给Crazyflie，Crazyflie 飞控内部会对接收到的外部位置信息进行多传感器融合滤波（如 EKF），以输出更平滑的估计值。其中通过时间戳节流将发送频率限制在约 50Hz，目的是避免因数据发送过快导致无线电链路拥塞或缓冲区溢出。
+&emsp;&emsp;以下代码旨在对动捕数据进行处理，将其转换为Crazyflie可识别的位置信息。具体来说，该函数会从动捕数据中提取出刚体的位置信息，并将其转换为米为单位的位置信息，同时进行坐标系映射。然后，将该位置信息发送给Crazyflie，Crazyflie 飞控内部会对接收到的外部位置信息进行多传感器融合滤波（如EKF等技术），以输出更平滑的估计值。其中通过时间戳节流将发送频率限制在约 50Hz，目的是避免因数据发送过快导致无线电链路拥塞或缓冲区溢出。
 
 ```python
 def nokov_to_cf_callback(pFrameOfMocapData, pUserData):
@@ -419,7 +419,15 @@ else:
 
 # 3. 光流控制
 
+&emsp;&emsp;若使用光流控制，硬件方面无需动捕组的所有硬件，但需增补Flow Deck硬件安装于Crazyflie底部并将正向箭头指向Crazyflie的前向方向。
 
+<div align=center>
+    <img src="./Assets/Flow.png" width=30%>
+</div>
+
+&emsp;&emsp;该定位技术无需外部软件控制当前位置数据流的传输，仅需Crazyflie与地面站电脑的进行控制器与跟踪轨迹的通信即可。代码具体可见<a href="./Crazyflie_Control/01_base_Crazyflie(WX-PID).py">01_base_Crazyflie(WX-PID).py</a>。
+
+&emsp;&emsp;但该定位技术对地面纹理要求较高，如地面为单一颜色或纹理，该定位技术将无法正常工作。可于文印店使用论文拼接打印成一张布，效果更佳。
 
 # 附A：动捕库安装教程
 &emsp;&emsp;将“nokovpy-3.0.1-py3-none-any.whl”文件放置于主目录下，并在终端执行以下命令进行动捕库的安装：
