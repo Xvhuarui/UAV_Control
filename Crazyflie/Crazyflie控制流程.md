@@ -10,7 +10,7 @@
 
 其中Crazyflie组包括：
 
--   Crazyflie 2.1 无人机：无人机实验本体，以下简写为Crazyflie
+-   Crazyflie 2.1+ 无人机：无人机实验本体，以下简写为Crazyflie
 -   CrazyRadio PA：与Crazyflie连接并通讯
 
 <div align=center>
@@ -443,3 +443,21 @@ else:
     ```python
     pip install --force-reinstall nokovpy-3.0.1-py3-none-any.whl
     ```
+
+# 附B：本地环境配置教程
+
+&emsp;&emsp;将“<a href="./Crazyflie_Control/Env_Configuration">Env_Configuration</a>”文件夹下的“<a href="./Crazyflie_Control/Env_Configuration/install.ps1">install.ps1</a>”文件、“<a href="./Crazyflie_Control/Env_Configuration/poetry.lock">poetry.lock</a>”文件与“<a href="./Crazyflie_Control/Env_Configuration/pyproject.toml">pyproject.toml</a>”文件放置于主目录下，并右键点击“install.ps1”文件选择“使用PowerShell运行”，等待下载完毕，即可获得python本地环境文件夹“.venv”。
+
+&emsp;&emsp;之后点击所需的控制代码后创建项目，并修改项目解释器为本地环境下的python解释器即可完成本地环境的使用。
+
+&emsp;&emsp;注意：该方法为本地环境配置教程，并非虚拟环境配置，虚拟环境需寻找其他教程进行配置。
+
+# 附C：相关资料链接
+
+-   官方网站：https://www.bitcraze.io/
+-   官方文档：<a href="./Crazyflie_Control/Manual">部分官方文档</a>
+-   开源代码：<a href="./Crazyflie_Control/Crazyflie_Github">Crazyflie_Github</a>
+-   购买链接：<a href="https://shop486158982.world.taobao.com/category.htm?spm=tbpc.boughtlist.order_shopname.1.69612e8dEQsRoi">石头实验室</a>
+-   地面站驱动安装包：
+-   地面站驱动安装教程：<a href="https://www.bitcraze.io/documentation/repository/crazyradio-firmware/master/building/usbwindows/">地面站驱动安装教程链接</a>
+-   地面站安装包：
